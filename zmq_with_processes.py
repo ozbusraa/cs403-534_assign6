@@ -9,6 +9,7 @@ import re
 import sys, getopt
 import random
 
+
 def produce1(iteration_num):
     print ('process id:', os.getpid())
     context = zmq.Context()

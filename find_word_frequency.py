@@ -13,7 +13,7 @@ class FindWordFrequency(MapReduce):
         f = open(filename, "r", encoding='utf-8')
         text = f.read()
         line = text[start_index:end_index]
-        words=line.split(' ')
+        words=line.split()
         count = 0
         for word in words:
             if word == keyword:

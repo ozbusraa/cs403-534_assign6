@@ -14,7 +14,7 @@ class FindWordCount(MapReduce):
         text=f.read()
 
         line=text[start_index:end_index]
-        return len(line.split(' '))
+        return len(line.split())
 
     def Reduce(self,reduce_input):
         result=0

@@ -33,14 +33,14 @@ class MapReduce(ABC):
         time.sleep(1)
 
         for i in range(self.numWorker):
-            while endno <= char_count and producer_input[endno - 1] != ' ':
+            while endno < char_count and not (producer_input[endno] == ' ' or producer_input[endno + 1] == '\n'):
                 endno += 1
 
             work_message = {'startno': startno, 'endno': endno}
             socket.send_json(work_message)
             # time.sleep(1)
             print('Producer send ', i, 'th message with', startno, endno)
-            startno = endno
+            startno = endno + 1
             if (endno + word_range) < char_count:
                 endno += word_range
             else:
@@ -87,6 +87,15 @@ class MapReduce(ABC):
         self.filename = filename
         self.keyword = keyword
         content = open(filename, 'r').read()
+
+        # ###########TESTS##########
+        # words = content.split()
+        # print('Word Count:', len(words))
+        # freq = 0
+        # for w in words:
+        #     if w == keyword:
+        #         freq += 1
+        # print('Freq:', freq)
 
         producer = Process(target=self.__Producer, args=(content,))
         producer.start()

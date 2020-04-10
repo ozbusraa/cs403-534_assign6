@@ -14,3 +14,4 @@ if __name__ == '__main__':
         count_mapreduce.start(sys.argv[3], sys.argv[4])
     else:
         print('You have entered wrong inputs, check your command and parameters')
+        print(num_argv, str(sys.argv))
